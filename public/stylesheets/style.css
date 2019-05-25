@@ -1,0 +1,52 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+#header {
+  width: 100vw;
+  height: 10vh;
+  background-color: #ffd54f;
+  text-align: center;
+  color: black;
+}
+
+#headerText {
+  padding-top: 2vh;
+}
+
+#container {
+  text-align: center;
+}
+
+#login {
+  text-align: center;
+}
+
+.post {
+  /* text-align: center; */
+  width: 50vw;
+  border: 1px solid black;
+  margin: 0 auto;
+  margin-top: 1vw;
+  padding: 0.5vw;
+
+}
+
+.title {
+  text-align: center;
+}
+
+.reward {
+  text-align: right;
+}
+
+.branch {
+  text-align: right;
+}
+
+.login {
+  margin: 10px;
+  width: 10vw;
+  height: 4vh;
+}
