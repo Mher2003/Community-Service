@@ -2,7 +2,8 @@
 <html>
   <head>
     <title></title>
-    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <div id="header">
@@ -10,9 +11,9 @@
     </div>
     <div id="container">
       <h2 id="login">Login</h2>
-      <input class="login" type="text" name="username" value=""><br/>
-      <input class="login" type="password" name="password" value=""><br/>
-      <button type="button" name="login">Log In</button>
+      <input class="login" id="user" type="text" name="username" value=""><br/>
+      <input class="login" id="pass" type="password" name="password" value=""><br/>
+      <button type="button" class="btn btn-warning" id="submit" name="login">Log In</button>
     </div>
     <script type="text/javascript" src="/javascripts/jquery.js"></script>
     <script type="text/javascript" src="/javascripts/popper.js"></script>

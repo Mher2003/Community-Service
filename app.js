@@ -40,20 +40,36 @@ app.post('/getPosts', function (req, res) {
   res.send([idk(data)]);
 });
 
-app.post('/addPost', function (req, res) {
-  let user;
+app.post('/checkUserAndPass', function (req, res) {
+  const u = req["body"]["user"];
+  const p = req["body"]["pass"];
+  if (checkUser(u, p)["s"]) {
+    res.send([checkUser(u, p), sha256(p)]);
+  } else {
+    res.send([checkUser(u, p)]);
+  }
+
+});
+
+app.post('/checkUsername', function (req, res) {
+  let l;
   for (let i = 0; i < users.length; i++) {
-    if (users[i]['user'] == req['body']['user']) {
-      if (users[i]['pass'] == sha256(req['body']['pass'])) {
-        // Right user and pass
-        user = users[i]['user'];
-      } else {
-        // Wrong pass, but right user
-        res.send(["Wrong Password!"]);
-        break;
-      }
+    if (users[i]['user'] == req["body"]["user"]) {
+      l = true;
+      break;
     }
   }
+  if (l) {
+    res.send([true]);
+  }else{
+    res.send([false]);
+  }
+});
+
+
+
+app.post('/addPost', function (req, res) {
+  checkUser(req["body"]["user"], req["body"]["user"]);
   if (user) {
     data.push({"uuid":uuidv4(), "title":req['body']['title'], "desc":req['body']['desc'], "branch":req['body']['branch'], "reward":req['body']['reward']});
       fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
@@ -64,12 +80,35 @@ app.post('/addPost', function (req, res) {
   }
 });
 
-function idk(data) {
+const idk = (data) => {
   let h = "";
   for (let i = 0; i < data.length; i++) {
     h+="<div class='post'><h3 class='title'>" + data[i]['title'] + "</h3><p class='desc'>" + data[i]['desc'] + "</p><p class='branch'>Branch:" + data[i]['branch'] + "</p><p class='reward'>Reward:" + data[i]['reward'] + " hours</p></div></br>";
   }
   return h
+}
+
+// Check if the username and password are correct
+const checkUser = (u, p) => {
+  let l = {"s": false, "m":""};
+  for (let i = 0; i < users.length; i++) {
+    if (users[i]['user'] == u) {
+      if (users[i]['pass'] == sha256(p) || users[i]['pass'] == p) {
+        // Right user and pass
+        l["s"] = true;
+        break;
+      } else {
+        // Wrong pass, but right user
+        l["m"] = "Wrong Password!";
+        break;
+      }
+    }
+  }
+  console.log(l);
+  if (!l["m"]) {
+    l["m"] = "Wrong Username!";
+  }
+  return l;
 }
 
 // catch 404 and forward to error handler

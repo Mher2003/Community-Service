@@ -3,9 +3,13 @@
   padding: 0px;
 }
 
+p {
+  margin-bottom: 0;
+}
+
 #header {
-  width: 100vw;
-  height: 10vh;
+  width: 100%;
+  min-height: 10vh;
   background-color: #ffd54f;
   text-align: center;
   color: black;
@@ -23,14 +27,19 @@
   text-align: center;
 }
 
+#submit {
+  width: 15vw;
+  min-height: 5vh;
+}
+
 .post {
   /* text-align: center; */
   width: 50vw;
+  min-height: 10vw;
   border: 1px solid black;
   margin: 0 auto;
   margin-top: 1vw;
   padding: 0.5vw;
-
 }
 
 .title {
@@ -47,6 +56,9 @@
 
 .login {
   margin: 10px;
-  width: 10vw;
-  height: 4vh;
+  min-width: 20vw;
+  height: 5vh;
+  font-size: 3vh;
+  border: 1.5px solid black;
+  border-radius: 4px;
 }
