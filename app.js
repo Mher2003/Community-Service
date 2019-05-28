@@ -104,7 +104,6 @@ const checkUser = (u, p) => {
       }
     }
   }
-  console.log(l);
   if (!l["m"]) {
     l["m"] = "Wrong Username!";
   }
