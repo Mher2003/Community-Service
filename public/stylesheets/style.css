@@ -3,6 +3,12 @@
   padding: 0px;
 }
 
+body {
+  background-image: url("/images/background.png");
+  background-size: 20vw 20vw;
+  background-repeat: repeat-y repeat-x;
+}
+
 p {
   margin-bottom: 0;
 }
