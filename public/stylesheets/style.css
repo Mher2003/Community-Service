@@ -2,7 +2,13 @@
   margin: 0px;
   padding: 0px;
 }
-
+/*
+body {
+  background-image: url("/images/background.png");
+  background-size: 10vw 10vw;
+  background-repeat: repeat-y repeat-x;
+}
+*/
 p {
   margin-bottom: 0;
 }
@@ -40,6 +46,7 @@ p {
   margin: 0 auto;
   margin-top: 1vw;
   padding: 0.5vw;
+  background-color: lightyellow;
 }
 
 .title {
