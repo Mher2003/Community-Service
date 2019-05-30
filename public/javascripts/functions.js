@@ -14,6 +14,14 @@ const checkUserAndPass = (u,p,c) => {
 	);
 }
 
+const checkUserAndHashedPass = (u,hp,c) => {
+  $.post("/checkUserAndHashedPass", {"user":u, "pass":hp},
+		function(data) {
+      c(data);
+		}, "json"
+	);
+}
+
 const checkUsername = (u, id) => {
   if (u) {
     $.post("/checkUsername", {"user":u},

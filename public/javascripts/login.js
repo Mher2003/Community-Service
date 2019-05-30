@@ -2,7 +2,8 @@ $(document).ready(function() {
   if (getCookie("user") != 0) {
     const u = getCookie("user");
     const p = getCookie("pass");
-    checkUserAndPass(u,p,function(l){
+    checkUserAndHashedPass(u,p,function(l){
+      console.log(l);
       if (l[0]["s"] == true) {
         alert("Already Logged In!");
         window.location.href = "/";

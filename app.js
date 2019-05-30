@@ -42,13 +42,23 @@ app.post('/getPosts', function (req, res) {
 
 app.post('/checkUserAndPass', function (req, res) {
   const u = req["body"]["user"];
-  const p = req["body"]["pass"];
+  const p = sha256(req["body"]["pass"]);
   if (checkUser(u, p)["s"]) {
-    res.send([checkUser(u, p), sha256(p)]);
+    res.send([checkUser(u, p), p]);
   } else {
     res.send([checkUser(u, p)]);
   }
+});
 
+app.post('/checkUserAndHashedPass', function (req, res) {
+  const u = req["body"]["user"];
+  const p = req["body"]["pass"];
+  console.log(u, p);
+  if (checkUser(u, p)["s"]) {
+    res.send([checkUser(u, p)]);
+  } else {
+    res.send([checkUser(u, p)]);
+  }
 });
 
 app.post('/checkUsername', function (req, res) {
@@ -93,7 +103,7 @@ const checkUser = (u, p) => {
   let l = {"s": false, "m":""};
   for (let i = 0; i < users.length; i++) {
     if (users[i]['user'] == u) {
-      if (users[i]['pass'] == sha256(p) || users[i]['pass'] == p) {
+      if (users[i]['pass'] == p) {
         // Right user and pass
         l["s"] = true;
         break;
