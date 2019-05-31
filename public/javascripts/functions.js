@@ -1,6 +1,6 @@
 const getPosts = (c,f) => {
   $.post("/getPosts", {"filter":f},
-		function(data) {
+		data => {
       document.getElementById(c).innerHTML = data[0];
 		}, "json"
 	);
@@ -8,7 +8,7 @@ const getPosts = (c,f) => {
 
 const checkUserAndPass = (u,p,c) => {
   $.post("/checkUserAndPass", {"user":u, "pass":p},
-		function(data) {
+		data => {
       c(data);
 		}, "json"
 	);
@@ -16,7 +16,7 @@ const checkUserAndPass = (u,p,c) => {
 
 const checkUserAndHashedPass = (u,hp,c) => {
   $.post("/checkUserAndHashedPass", {"user":u, "pass":hp},
-		function(data) {
+    data =>{
       c(data);
 		}, "json"
 	);
@@ -25,7 +25,7 @@ const checkUserAndHashedPass = (u,hp,c) => {
 const checkUsername = (u, id) => {
   if (u) {
     $.post("/checkUsername", {"user":u},
-  		function(data) {
+  		data => {
         if (data[0]) {
           document.getElementById(id).style.border = "1.5px solid green";
         } else {
@@ -38,7 +38,7 @@ const checkUsername = (u, id) => {
 
 const addPost = (user, pass, title, desc, branch, reward) => {
   $.post("/addPost", {"user":user, "pass":pass, "title":title,"desc":desc,"branch":branch,"reward":reward},
-		function(data) {
+		data => {
       console.log(data[0]);
 		}, "json"
 	);

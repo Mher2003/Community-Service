@@ -36,11 +36,11 @@ app.use('/', indexRouter);
 
 
 // Get request and Send Posts
-app.post('/getPosts', function (req, res) {
+app.post('/getPosts', (req, res) => {
   res.send([idk(data)]);
 });
 
-app.post('/checkUserAndPass', function (req, res) {
+app.post('/checkUserAndPass', (req, res) => {
   const u = req["body"]["user"];
   const p = sha256(req["body"]["pass"]);
   if (checkUser(u, p)["s"]) {
@@ -50,7 +50,7 @@ app.post('/checkUserAndPass', function (req, res) {
   }
 });
 
-app.post('/checkUserAndHashedPass', function (req, res) {
+app.post('/checkUserAndHashedPass', (req, res) => {
   const u = req["body"]["user"];
   const p = req["body"]["pass"];
   console.log(u, p);
@@ -61,7 +61,7 @@ app.post('/checkUserAndHashedPass', function (req, res) {
   }
 });
 
-app.post('/checkUsername', function (req, res) {
+app.post('/checkUsername', (req, res) => {
   let l;
   for (let i = 0; i < users.length; i++) {
     if (users[i]['user'] == req["body"]["user"]) {
@@ -78,7 +78,7 @@ app.post('/checkUsername', function (req, res) {
 
 
 
-app.post('/addPost', function (req, res) {
+app.post('/addPost', (req, res) => {
   checkUser(req["body"]["user"], req["body"]["user"]);
   if (user) {
     data.push({"uuid":uuidv4(), "title":req['body']['title'], "desc":req['body']['desc'], "branch":req['body']['branch'], "reward":req['body']['reward']});
@@ -121,12 +121,12 @@ const checkUser = (u, p) => {
 }
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
